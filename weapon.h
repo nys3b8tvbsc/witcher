@@ -13,6 +13,7 @@ protected:
 
 public:
 	virtual void attack(Enemy& enemy) const = 0;
+	virtual ~Weapon() = default;
 };
 
 struct Fists: Weapon
