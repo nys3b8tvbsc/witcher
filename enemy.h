@@ -23,7 +23,7 @@ protected:
 public:
     std::string_view get_name() const;
     void take_damage(int damage);
-    void attack(Witcher& herald) const;
+    void attack(Witcher& witcher) const;
     bool is_dead() const;
 };
 

@@ -10,9 +10,9 @@ void Enemy::take_damage(int damage)
 	this->hp = (this->hp > 0)? this->hp: 0;
 }
 
-void Enemy::attack(Witcher& herald) const
+void Enemy::attack(Witcher& witcher) const
 {
-	herald.take_damage(this->damage);	
+	witcher.take_damage(this->damage);	
 }
 
 bool Enemy::is_dead() const
