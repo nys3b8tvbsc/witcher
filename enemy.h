@@ -2,8 +2,15 @@
 
 #include <string>
 
-class Witcher;
+enum class EnemyType {
+	DRACONID,
+	GHOST,
+	NECROPHAGE,
+	HUMAN,
+	ROGUE
+};
 
+class Witcher;
 
 class Enemy
 {
@@ -49,7 +56,7 @@ struct Draconid: Monster
 
 struct Ghost: Monster
 {
-	Ghost(std::string_view name, int hp, int armor, int damage):
+	Ghost(std::string_view name):
 	Monster(name, 
 			50 + rand() % 21,
 			1 + rand() % 5,
@@ -59,7 +66,7 @@ struct Ghost: Monster
 
 struct Necrophage: Monster
 {
-	Necrophage(std::string_view name, int hp, int armor, int damage):
+	Necrophage(std::string_view name):
 	Monster(name, 
 			100 + rand() % 401,
 			3 + rand() % 6,
@@ -71,17 +78,21 @@ struct Necrophage: Monster
 
 struct Human: Enemy
 {
-	Human(std::string_view name, int hp, int armor, int damage):
+	Human(std::string_view name):
 	Enemy(name, 
 			40 + rand() % 11,
 			0 + rand() % 3,
 			20 + rand() % 6)
 	{}
+
+	Human(std::string_view name, int hp, int armor, int damage):
+	Enemy(name, hp, armor, damage)
+	{}
 };
 
 struct Rogue: Human
 {
-	Rogue(std::string_view name, int hp, int armor, int damage):
+	Rogue(std::string_view name):
 	Human(name, 
 			40 + rand() % 11,
 			1 + rand() % 7,
