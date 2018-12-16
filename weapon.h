@@ -3,6 +3,14 @@
 #include <cstdlib>
 #include "enemy.h"
 
+enum class OilType
+{
+	DRACONID,
+	GHOST,
+	NECROPHAGE,
+	NONE
+};
+
 class Weapon
 {
 protected:
@@ -21,7 +29,8 @@ struct Fists: Weapon
 	Fists(int damage): Weapon(damage) 
 	{}
 
-	void attack(Enemy& enemy) const override {
+	void attack(Enemy& enemy) const override 
+	{
 		enemy.take_damage(this->damage);
 	}
 };
@@ -37,7 +46,8 @@ struct SteelSword: Sword
 	SteelSword(int damage): Sword(damage)
 	{}
 
-	void attack(Enemy& enemy) const override {
+	void attack(Enemy& enemy) const override
+	{
 		enemy.take_damage(this->damage);
 	}
 };
@@ -45,19 +55,52 @@ struct SteelSword: Sword
 struct SilverSword: Sword
 {
 private:
-	mutable int oiled = 0;
+	mutable int oiled_draconid = 0;
+	mutable int oiled_ghost = 0;
+	mutable int oiled_necrophage = 0;
 
 public:
-	void oil() { oiled = 10; }
-
 	SilverSword(int damage): Sword(damage)
 	{}
 
-	void attack(Enemy& enemy) const override {
+	void oil(OilType type)
+	{
+		switch(type) {
+			case OilType::DRACONID:
+				oiled_draconid = 10;
+				oiled_ghost = 0;
+				oiled_necrophage = 0;
+				break;
+			case OilType::GHOST:
+				oiled_draconid = 0;
+				oiled_ghost = 10;
+				oiled_necrophage = 0;
+				break;
+			case OilType::NECROPHAGE:
+				oiled_draconid = 0;
+				oiled_ghost = 0;
+				oiled_necrophage = 10;
+				break;
+			case OilType::NONE:
+				oiled_draconid = 0;
+				oiled_ghost = 0;
+				oiled_necrophage = 0;
+				break;
+		}
+	}
+
+	void attack(Enemy& enemy) const override
+	{
 		int damage;
-		if(oiled) {
+		if(oiled_draconid) {
 			damage = 1.5 * this->damage;
-			--oiled;
+			--oiled_draconid;
+		} else if(oiled_ghost) {
+			damage = 1.5 * this->damage;
+			--oiled_ghost;
+		} else if(oiled_necrophage) {
+			damage = 1.5 * this->damage;
+			--oiled_necrophage;
 		} else {
 			damage = this->damage;;	
 		} 
