@@ -6,7 +6,8 @@
 int main() 
 {
 	srand(time(0));
-	Game(EnemyType::DRACONID, "drac");
+	auto g = Game(EnemyType::GHOST, "drac");
+	g.start();
 
 	return 0;
 }

@@ -1,6 +1,7 @@
 #include "game.h"
+#include <iostream>
 
-using std::make_unique;
+using std::make_unique, std::cout, std::endl;
 
 Game::Game(EnemyType id, std::string_view enemy_name):
 	id(id) 
@@ -22,11 +23,15 @@ Game::Game(EnemyType id, std::string_view enemy_name):
 		case EnemyType::ROGUE:
 			enemy = make_unique<Rogue>(enemy_name);
 			break;
+		default:
+			cout << "Ошибка выбора типа противника" << endl;
+			exit(1);
 	}
 }
 
 void Game::start()
 {
+	cout << "Игра началась" << endl;
 	witcher->set_fight_style(id, enemy.get());
 	witcher->start_fight();
 }

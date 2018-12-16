@@ -2,6 +2,9 @@
 
 #include <cstdlib>
 #include "enemy.h"
+#include <iostream>
+
+using std::cout, std::endl;
 
 enum class OilType
 {
@@ -31,6 +34,7 @@ struct Fists: Weapon
 
 	void attack(Enemy& enemy) const override 
 	{
+		cout << "Кулак нанес " << this->damage << " урона " << endl;
 		enemy.take_damage(this->damage);
 	}
 };
@@ -48,6 +52,7 @@ struct SteelSword: Sword
 
 	void attack(Enemy& enemy) const override
 	{
+		cout << "Стальной меч нанес " << this->damage << " урона" << endl;
 		enemy.take_damage(this->damage);
 	}
 };
@@ -103,7 +108,9 @@ public:
 			--oiled_necrophage;
 		} else {
 			damage = this->damage;;	
-		} 
+		}
+
+		cout << "Серебряный меч " << damage << " урона" << endl; 
 		enemy.take_damage(damage);
 	}
 };

@@ -1,7 +1,8 @@
 #include "enemy.h"
 #include "witcher.h"
+#include <iostream>
 
-using std::string_view;
+using std::string_view, std::cout, std::endl;
 
 void Enemy::take_damage(int damage)
 {
@@ -12,11 +13,14 @@ void Enemy::take_damage(int damage)
 
 void Enemy::attack(Witcher& witcher) const
 {
-	witcher.take_damage(this->damage);	
+	cout << this->get_name() << " атакует ведьмака с силой = "<< this->damage << endl;
+	witcher.take_damage(this->damage);
 }
 
 bool Enemy::is_dead() const
 {
+	if (this->hp == 0)
+		cout << this->get_name() << " мертв" << endl;
 	return this->hp == 0;
 }
 

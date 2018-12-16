@@ -27,7 +27,8 @@ void Witcher::take_damage(int damage)
 
 void Witcher::attack(Enemy& enemy) const
 {
-	active_weapon->attack(enemy);	
+	cout << "Ведьмак атакует" << endl;	
+	active_weapon->attack(enemy);
 }
 
 void Witcher::set_fight_style(EnemyType id, Enemy* enemy)
@@ -78,27 +79,40 @@ void Witcher::oil_silver_sword(OilType type)
 			if (draconid_oil) {
 				draconid_oil = false;
 				this->silver_sword->oil(type);
+				cout << "Намазал масло от драконидов" << endl;
 			}
 			else
 				this->silver_sword->oil(OilType::NONE);
+				cout << "Нет масла от драконидов" << endl;
 			break;
 
 		case OilType::GHOST:
 			if (ghost_oil) {
 				ghost_oil = false;
 				this->silver_sword->oil(type);
+				cout << "Намазал масло от призраков" << endl;
 			}
 			else
 				this->silver_sword->oil(OilType::NONE);
+				cout << "Нет масла от призраков" << endl;
 			break;
 
 		case OilType::NECROPHAGE:
 			if (necrophage_oil) {
 				necrophage_oil = false;
 				this->silver_sword->oil(type);
+				cout << "Намазал масло от трупоедов" << endl;
 			}
 			else
 				this->silver_sword->oil(OilType::NONE);
+				cout << "Нет масла от трупоедов" << endl;
 			break;
 	}
+}
+
+bool Witcher::is_dead() const
+{
+	if (hp == 0)
+		cout << "Ведьмак умер" << endl;
+	return hp == 0;
 }

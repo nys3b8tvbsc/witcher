@@ -38,9 +38,5 @@ public:
 	void start_fight();
 	void set_weapon(WeaponType type);
 	void oil_silver_sword(OilType type);
-	
-	bool is_dead() const
-	{
-		return hp == 0;
-	}
+	bool is_dead() const;
 };
