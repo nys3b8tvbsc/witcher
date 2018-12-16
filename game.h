@@ -6,13 +6,12 @@
 
 class Game
 {
-// fight pointer;
-	std::unique_ptr<Fight> fight;  // TODO nullptr
 	std::unique_ptr<Witcher> witcher;
+
+	EnemyType id;
 	std::unique_ptr<Enemy> enemy;
 
 public:
-	Game();
+	Game(EnemyType id, std::string_view enemy_name);
 	void start();
-	void set_fight(); //?? TODO
 };
