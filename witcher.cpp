@@ -49,7 +49,7 @@ void Witcher::set_fight_style(EnemyType id, Enemy* enemy)
 		case EnemyType::ROGUE:
 			fight_style = make_unique<RogueFight>(this, enemy);
 			break;
-	}	
+	}
 }
 
 void Witcher::start_fight()
@@ -81,9 +81,10 @@ void Witcher::oil_silver_sword(OilType type)
 				this->silver_sword->oil(type);
 				cout << "Намазал масло от драконидов" << endl;
 			}
-			else
+			else{
 				this->silver_sword->oil(OilType::NONE);
 				cout << "Нет масла от драконидов" << endl;
+			}
 			break;
 
 		case OilType::GHOST:
@@ -92,9 +93,10 @@ void Witcher::oil_silver_sword(OilType type)
 				this->silver_sword->oil(type);
 				cout << "Намазал масло от призраков" << endl;
 			}
-			else
+			else {
 				this->silver_sword->oil(OilType::NONE);
 				cout << "Нет масла от призраков" << endl;
+			}
 			break;
 
 		case OilType::NECROPHAGE:
@@ -103,9 +105,10 @@ void Witcher::oil_silver_sword(OilType type)
 				this->silver_sword->oil(type);
 				cout << "Намазал масло от трупоедов" << endl;
 			}
-			else
+			else {
 				this->silver_sword->oil(OilType::NONE);
 				cout << "Нет масла от трупоедов" << endl;
+			}
 			break;
 	}
 }
